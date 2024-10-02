@@ -1,22 +1,70 @@
+* {
+  box-sizing: border-box;
+  text-align: center;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background-color: #f0f0f0;
+  min-height: 100vh;
+}
+
 .container {
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 20px; /* Space between the cards */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
 }
 
 .card {
-  color: #000000;
-  border: 1px solid #ccc; /* Card border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 15px; /* Padding inside the card */
-  background-color: #f9f9f9; /* Card background color */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.left{
+text-align: left;
+font-size: x-small ;
+}
+
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .card h3 {
-  margin-top: 0; 
+  background-color: #007bff;
+  color: white;
+  margin: 0;
+  padding: 15px;
+  font-size: 1.2em;
+}
+
+.content {
+  padding: 15px;
+}
+
+.content p {
+  margin: 10px 0;
+}
+
+.learn-more {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.learn-more:hover {
+  background-color: #218838;
 }

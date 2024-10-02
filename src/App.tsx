@@ -40,10 +40,10 @@ const TopicsComponent: React.FC = () => {
           topics.map((topic) => (
             <div className="card" key={topic.id}>
               <h3>{topic.title}</h3>
-              <p>{topic.description}</p>
-              <p><strong>Author ID:</strong> {topic.authorId}</p>
-              <p><strong>Created At:</strong> {new Date(topic.createdAt).toLocaleString()}</p>
-              <p><strong>Modified At:</strong> {new Date(topic.modifiedAt).toLocaleString()}</p>
+              <div className="content">
+                <p>{topic.description}</p>
+                <p className='left'><strong>Created:</strong> {new Date(topic.createdAt).toLocaleDateString()}</p>
+              </div>
             </div>
           ))
         ) : (
@@ -53,5 +53,6 @@ const TopicsComponent: React.FC = () => {
     </div>
   );
 };
+
 
 export default TopicsComponent;
