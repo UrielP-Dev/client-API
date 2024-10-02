@@ -1,0 +1,22 @@
+.container {
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 20px; /* Space between the cards */
+}
+
+.card {
+  color: #000000;
+  border: 1px solid #ccc; /* Card border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 15px; /* Padding inside the card */
+  background-color: #f9f9f9; /* Card background color */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+}
+
+.card h3 {
+  margin-top: 0; 
+}
