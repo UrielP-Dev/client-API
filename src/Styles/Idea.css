@@ -1,0 +1,17 @@
+
+.Ideacontainer{
+    display: flex; 
+    justify-content: center;
+    
+
+}
+
+.idea{
+    padding: 20px;
+    background-color: #5cceee;
+    height: auto;
+    width: 80vh;
+    box-shadow: 5px 5px 5px black;
+    margin: 10px;
+
+}
