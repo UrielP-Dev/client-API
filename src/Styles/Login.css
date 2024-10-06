@@ -1,0 +1,52 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
+
+html, body {
+    height: 100%; /* Asegura que el html y el body ocupen toda la altura */
+    margin: 0; /* Elimina márgenes por defecto */
+    background-color: #cacaca;
+    font-family: "Montserrat", sans-serif; 
+}
+
+* {
+    text-align: center;
+    color: #f1ebeb;
+}
+
+.container {
+    background-color: rgba(36, 192, 235, 0.8); /* Fondo cristalino */
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    display: flex;
+    flex-direction: column; /* Coloca los elementos en una columna */
+    justify-content: center; /* Centra verticalmente */
+    align-items: center; /* Centra horizontalmente */
+    height: 500px; /* Altura del contenedor */
+    width: 500px; /* Ancho del contenedor */
+    margin: 20px auto; /* Añade un margen superior e inferior y centra horizontalmente */
+    border-radius: 15px; /* Opcional: añade esquinas redondeadas */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37); /* Opcional: añade sombra */
+}
+
+.field {
+    font-size: x-large;
+    margin-top: 0;
+
+    margin-bottom: 10px; /* Espacio entre campos de entrada y botón */
+    padding: 20px;
+
+}
+
+input {
+    color: black;
+}
+
+#login {
+    background-color: rgb(255, 255, 255);
+    font-size: larger;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    color: black;
+}
