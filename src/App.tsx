@@ -10,12 +10,10 @@ function App() {
           <NavBar />
           <Routes>
             <Route path="/" element={<TopicsComponent />} />{" "}
-            {/* Home route for Topics */}
             <Route
               path="/topic-selected/:id"
               element={<TopicSelected />}
             />{" "}
-            {/* Route for TopicSelected */}
           </Routes>
         </div>
       </Router>

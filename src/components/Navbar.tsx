@@ -1,8 +1,9 @@
+import "../Styles/Navbar.css";
 
 function NavBar() {
   return (
-    <nav>
-      <img src="/path/to/logo.png" alt="logo" />
+    <nav className="Navbar">
+      <img className="logo" src="../public/IconWwW.svg" alt="logo" />
       <ul>
         <li>
           <a href="/">Create Topic</a>
