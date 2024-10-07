@@ -48,7 +48,7 @@ const TopicsComponent: React.FC = () => {
                 <div className="description">{topic.description}</div>
                 <div className="actions">
                   <button className="action-button">
-                    <span className="action-icon">💬</span> Comments
+                    <span className="action-icon">💬</span> Ideas
                   </button>
                 </div>
               </div>
