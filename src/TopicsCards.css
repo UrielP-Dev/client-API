@@ -1,59 +1,99 @@
 * {
   box-sizing: border-box;
-  text-align: center;
+  font-family: 'Arial', sans-serif;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
   margin: 0;
-  background-color: #40646f;
-  min-height: 100vh;
+  background-color: #030303;
+  color: #d7dadc;
+ 
 }
 
 .container {
-  padding: 20px;
-  max-width: 1200px;
+  max-width: 800px;
   margin: 0 auto;
+  padding: 20px;
+  margin-top: 120px;
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .card {
-  background-color: #204550;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  background-color: #1a1a1b;
+  border: 1px solid #343536;
+  border-radius: 4px;
   overflow: hidden;
-  transition: transform 0.3s ease;
-  color: inherit;
+  transition: border-color 0.3s ease;
   text-decoration: none;
+  color: inherit;
+  display: flex;
 }
-.left{
-text-align: left;
-font-size: x-small ;
-}
-
 
 .card:hover {
-  transform: translateY(-5px);
+  border-color: #818384;
+}
+
+.vote-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background-color: #323b5b;
+  min-width: 40px;
+}
+
+
+.content-section {
+  flex-grow: 1;
+  padding: 8px 16px;
+  text-align: left;
 }
 
 .card h3 {
-  background-color: #002630;
-  color: white;
-  margin: 0;
-  padding: 15px;
-  font-size: 1.2em;
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #d7dadc;
 }
 
-.content {
-  padding: 15px;
-  
+.metadata {
+  font-size: 12px;
+  color: #818384;
+  margin-bottom: 8px;
 }
 
-.content p {
-  margin: 10px 0;
+.description {
+  font-size: 14px;
+  color: #d7dadc;
+  margin-bottom: 8px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: #818384;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+}
+
+.action-button:hover {
+  color: #d7dadc;
+  transform: scale(1.1);
+}
+
+.action-icon {
+  margin-right: 4px;
 }

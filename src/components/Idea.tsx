@@ -1,28 +1,31 @@
-import "../Styles/Idea.css";
-
 interface IdeaProps {
   idea: {
     id: string;
     content: string;
-    votes: number;
     authorId: string;
+    votes: number;
     createdAt: string;
   };
 }
 
-const Idea: React.FC<IdeaProps> = ({ idea }) => {
+function Idea({ idea }: IdeaProps) {
   return (
-    <>
-      <div className="Ideacontainer">
-        <div className="idea">
-          <h3> {idea.content}</h3>
-          <p>Votes: {idea.votes}</p>
-          <p>Author: {idea.authorId}</p>
-          <p>Created at: {new Date(idea.createdAt).toLocaleDateString()}</p>
+    <div className="idea-card">
+      <div className="vote-section"></div>
+      <div className="idea-content">
+        <div className="idea-metadata">
+          Posted by u/{idea.authorId} •{" "}
+          {new Date(idea.createdAt).toLocaleDateString()}
+        </div>
+        <p className="idea-text">{idea.content}</p>
+        <div className="idea-actions">
+          <button className="vote-button">
+            <span className="vote-icon">👍</span> 0
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
-};
+}
 
 export default Idea;

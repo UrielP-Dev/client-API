@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Idea from "../components/Idea";
+import "../Styles/TopicSelected.css";
 
 interface Topic {
   title: string;
@@ -32,10 +33,8 @@ function TopicSelected() {
         );
         const topicResult = await topicResponse.json();
 
-        console.log("Topic API response:", topicResult);
-
         if (Array.isArray(topicResult.data) && topicResult.data.length > 0) {
-          setTopic(topicResult.data[0]); // Access the first element of the array
+          setTopic(topicResult.data[0]);
         } else {
           console.error("Unexpected topic response structure:", topicResult);
         }
@@ -44,8 +43,6 @@ function TopicSelected() {
           `http://localhost:5185/api/v1/ideas/?TopicId=${topicId}`
         );
         const ideasResult = await ideasResponse.json();
-
-        console.log("Ideas API response:", ideasResult);
 
         if (Array.isArray(ideasResult)) {
           setIdeas(ideasResult);
@@ -62,30 +59,29 @@ function TopicSelected() {
     fetchTopicAndIdeas();
   }, [topicId]);
 
-  console.log("Current topic state:", topic);
-  console.log("Current ideas state:", ideas);
-
   return (
-    <>
+    <div className="topic-selected-container">
       {topic ? (
-        <>
+        <div className="topic-card">
           <h2>{topic.title}</h2>
-          <div className="topicPreview">
-            <p>{topic.description}</p>
-            <p>Created at: {new Date(topic.createdAt).toLocaleDateString()}</p>
+          <div className="topic-metadata">
+            Posted by u/{topic.authorId} •{" "}
+            {new Date(topic.createdAt).toLocaleDateString()}
           </div>
-        </>
+          <p className="topic-description">{topic.description}</p>
+        </div>
       ) : (
         <p>Loading topic...</p>
       )}
-      <div>
+      <div className="ideas-container">
+        <h3>Ideas</h3>
         {ideas.length > 0 ? (
           ideas.map((idea) => <Idea key={idea.id} idea={idea} />)
         ) : (
           <p>No ideas available for this topic.</p>
         )}
       </div>
-    </>
+    </div>
   );
 }
 

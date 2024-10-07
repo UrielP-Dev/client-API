@@ -1,10 +1,15 @@
 .Navbar {
-    background-color: #002630;
+    background-color: #323b5b;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 20px 50px;
     transition: all 0.3s ease;
+    position: fixed; 
+    top: 0;          
+    left: 0;         
+    width: 100%;    
+    z-index: 1000;  
 }
 
 .Navbar:hover {
