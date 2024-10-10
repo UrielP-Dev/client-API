@@ -1,63 +1,74 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "../Styles/Login.css";
+
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [error, setError] = useState("");
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
-
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/auth/", {
-        username,
-        password,
-      });
-
-      const token = response.data.token; // asegúrate de que el token está en response.data.token
-      localStorage.setItem("token", token);
-
-      alert("Login successful!");
-      // Aquí puedes redirigir al usuario a otra página o mostrar topics
+      // Simulando una llamada a API
+      console.log("Intento de registro con:", { firstName, lastName, email });
+      // Aquí normalmente harías una llamada a una API
+      // Como no podemos usar axios, tendrías que implementarlo usando fetch u otro método
+      // Por ahora, solo registramos el intento y limpiamos el formulario
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      alert("¡Registro exitoso! (Esta es una simulación)");
     } catch (error) {
-      setError("Invalid username or password");
+      setError("Fallo en el registro. Por favor, inténtalo de nuevo.");
     }
   };
 
   return (
-    <div className="mt-600 loginOwO">
-      <h2 className="text-2xl font-bold mb-6">Login</h2>
-      <form onSubmit={handleLogin} className="space-y-4">
-        <div className="flex flex-col">
-          <label className="mb-1 font-semibold">Username:</label>
+    <div className="login-container">
+      <div className="login-form">
+        <h2>Sign Up</h2>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
+        <form onSubmit={handleSignUp}>
           <input
-            className="border border-gray-300 p-2 rounded-md"
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            className="input-field"
+            placeholder="First Name"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             required
           />
-        </div>
-        <div className="flex flex-col">
-          <label className="mb-1 font-semibold">Password:</label>
           <input
-            className="border border-gray-300 p-2 rounded-md"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            type="text"
+            className="input-field"
+            placeholder="Last Name"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
             required
           />
+          <input
+            type="email"
+            className="input-field"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button type="submit" className="submit-button">
+            Sign Up
+          </button>
+        </form>
+        {error && <p className="error-message">{error}</p>}
+        <div className="social-login">
+          <button className="social-button">
+            <span className="social-icon">G</span> Google
+          </button>
+          <button className="social-button">
+            <span className="social-icon">f</span> Facebook
+          </button>
         </div>
-        <button
-          type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600"
-        >
-          Login
-        </button>
-      </form>
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+      </div>
     </div>
   );
 };

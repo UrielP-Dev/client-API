@@ -1,5 +1,4 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import TopicsComponent from './components/TopicCard';
 import TopicSelected from './Pages/TopicSelected';
 import NavBar from './components/Navbar';
@@ -15,9 +14,19 @@ function App() {
           {/* Ruta del login */}
           <Route path="/login" element={<Login />} />
 
-          {/* Rutas protegidas */}
+          {/* Redirección por defecto a la ruta login si no está autenticado */}
           <Route 
             path="/" 
+            element={
+              <ProtectedRoute>
+                <Navigate to="/login" /> {/* Redirige a login si no hay token */}
+              </ProtectedRoute>
+            } 
+          />
+
+          {/* Rutas protegidas */}
+          <Route 
+            path="/topics" 
             element={
               <ProtectedRoute>
                 <TopicsComponent />

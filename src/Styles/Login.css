@@ -2,3 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .login-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  .login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+  }
+  
+  /* Typography */
+  h2 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  p {
+    text-align: center;
+    color: #9ca3af;
+    margin-bottom: 2rem;
+  }
+  
+  /* Form elements */
+  .input-field {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    background-color: #1f2937;
+    border: 1px solid #4b5563;
+    color: #ffffff;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-button:hover {
+    background-color: #e5e7eb;
+  }
+  
+  /* Social login buttons */
+  .social-login {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    background-color: #1f2937;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .social-button:hover {
+    background-color: #374151;
+  }
+  
+  .social-icon {
+    margin-right: 0.5rem;
+  }
+  
+  /* Error message */
+  .error-message {
+    color: #ef4444;
+    text-align: center;
+    margin-top: 1rem;
+  }
