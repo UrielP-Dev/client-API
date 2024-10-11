@@ -1,103 +1,116 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
-
-
-/* General styles */
 body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  .login-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #000000;
-    color: #ffffff;
-  }
-  
-  .login-form {
-    width: 100%;
-    max-width: 400px;
-    padding: 2rem;
-  }
-  
-  /* Typography */
-  h2 {
-    font-size: 1.875rem;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  p {
-    text-align: center;
-    color: #9ca3af;
-    margin-bottom: 2rem;
-  }
-  
-  /* Form elements */
-  .input-field {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border-radius: 0.25rem;
-    background-color: #1f2937;
-    border: 1px solid #4b5563;
-    color: #ffffff;
-  }
-  
-  .submit-button {
-    width: 100%;
-    padding: 0.75rem;
-    border-radius: 0.25rem;
-    background-color: #ffffff;
-    color: #000000;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .submit-button:hover {
-    background-color: #e5e7eb;
-  }
-  
-  /* Social login buttons */
-  .social-login {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-  
-  .social-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50%;
-    padding: 0.75rem;
-    border-radius: 0.25rem;
-    background-color: #1f2937;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .social-button:hover {
-    background-color: #374151;
-  }
-  
-  .social-icon {
-    margin-right: 0.5rem;
-  }
-  
-  /* Error message */
-  .error-message {
-    color: #ef4444;
-    text-align: center;
-    margin-top: 1rem;
-  }
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(55deg, #000000, #2c3e50);
+}
+
+.login-container {
+  width: 400px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.login-form {
+  padding: 2.5rem;
+}
+
+/* Typography */
+h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+p {
+  text-align: center;
+  color: #bdc3c7;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+/* Form elements */
+.input-field {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  color: #ffffff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+}
+
+.submit-button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #3498db, #2980b9);
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.submit-button:hover {
+  background: linear-gradient(45deg, #2980b9, #3498db);
+  transform: translateY(-3px);
+  box-shadow: 0 7px 14px rgba(52, 152, 219, 0.3);
+}
+
+.submit-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3);
+}
+
+/* Error message */
+.error-message {
+  color: #e74c3c;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  background-color: rgba(231, 76, 60, 0.1);
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+
+/* Registration link */
+.login-form a {
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #bdc3c7;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #3498db;
+}
+
+a span {
+  margin-right: 0.5rem;
+}

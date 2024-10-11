@@ -19,10 +19,9 @@
 .Navbar ul {
     display: flex;
     justify-content: space-between;
-    gap: 80px;
+    gap: 40px;
     list-style-type: none;
-    font-size: x-large;
-}
+    font-size: 1.25rem;}
 
 .Navbar li {
     position: relative;

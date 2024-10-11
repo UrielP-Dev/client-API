@@ -28,9 +28,19 @@ function TopicSelected() {
   useEffect(() => {
     const fetchTopicAndIdeas = async () => {
       try {
+        // Get the token from localStorage
+        const token = localStorage.getItem("token");
+
+        // Fetch the topic details
         const topicResponse = await fetch(
-          `http://localhost:5185/api/v1/topics/${topicId}`
+          `http://localhost:5185/api/v1/topics/${topicId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            },
+          }
         );
+
         const topicResult = await topicResponse.json();
 
         if (Array.isArray(topicResult.data) && topicResult.data.length > 0) {
@@ -39,8 +49,14 @@ function TopicSelected() {
           console.error("Unexpected topic response structure:", topicResult);
         }
 
+        // Fetch the ideas for the topic
         const ideasResponse = await fetch(
-          `http://localhost:5185/api/v1/ideas/?TopicId=${topicId}`
+          `http://localhost:5185/api/v1/ideas/?TopicId=${topicId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // Include the token in the headers
+            },
+          }
         );
         const ideasResult = await ideasResponse.json();
 

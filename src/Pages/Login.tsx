@@ -1,73 +1,80 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Styles/Login.css";
 
 const Login = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate(); 
 
-  const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
+
     try {
-      // Simulando una llamada a API
-      console.log("Intento de registro con:", { firstName, lastName, email });
-      // Aquí normalmente harías una llamada a una API
-      // Como no podemos usar axios, tendrías que implementarlo usando fetch u otro método
-      // Por ahora, solo registramos el intento y limpiamos el formulario
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      alert("¡Registro exitoso! (Esta es una simulación)");
-    } catch (error) {
-      setError("Fallo en el registro. Por favor, inténtalo de nuevo.");
+      const response = await fetch("http://localhost:8080/api/v1/auth/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!response.ok) {
+        const { message } = await response.json();
+        throw new Error(message || "Incorrect username or password");
+      }
+
+      const data = await response.json();
+      localStorage.setItem("token", data.token);
+
+      
+      navigate("/topics");
+    } catch (error: any) {
+      setError(error.message);
     }
   };
 
   return (
     <div className="login-container">
       <div className="login-form">
-        <h2>Sign Up</h2>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem</p>
-        <form onSubmit={handleSignUp}>
+        <h2>Login</h2>
+        <p>Welcome back!</p>
+        <form onSubmit={handleLogin}>
           <input
             type="text"
             className="input-field"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
+          {error && !username && (
+            <p className="error-message">Username is required</p>
+          )}
+
           <input
-            type="text"
+            type="password"
             className="input-field"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <input
-            type="email"
-            className="input-field"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          {error && !password && (
+            <p className="error-message">Password is required</p>
+          )}
+
+          {error && <p className="error-message">{error}</p>}
+
           <button type="submit" className="submit-button">
-            Sign Up
+            Login
           </button>
+
+          <a href=""><span>Don't have an account?</span>Sign up</a>
+          
         </form>
-        {error && <p className="error-message">{error}</p>}
-        <div className="social-login">
-          <button className="social-button">
-            <span className="social-icon">G</span> Google
-          </button>
-          <button className="social-button">
-            <span className="social-icon">f</span> Facebook
-          </button>
-        </div>
       </div>
     </div>
   );
