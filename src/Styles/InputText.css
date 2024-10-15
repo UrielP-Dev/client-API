@@ -1,77 +1,138 @@
+/* Estilos generales */
+:root {
+  --background-dark: #1a1a1b;
+  --background-light: #2c2c2d;
+  --text-color: #ffffff;
+  --accent-color: #0079d3;
+  --accent-hover: #005999;
+  --error-color: #ff4444;
+  --success-color: #00c853;
+  --border-color: #343536;
+}
+
+body {
+  background-color: var(--background-dark);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+}
+
+/* Estilos para el contenedor principal */
+.container-post, .modal-content {
+  background-color: var(--background-light);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
 .container-post {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 750px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color:#1a1a1b;
-    border: 1px solid #343536;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    margin-bottom: 60px;
-    color: white;
-  }
-  .container-post:hover {
-    transform: scale(1.05); 
-  } 
-  
+  max-width: 900px;
+  margin: 30px auto;
+}
 
-  
-  h1 {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: white;
-  }
-  
-  .Title-topic {
-    width: 100%;
-    height: 50px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    background-color: #1a1a1b;
-    color: white;
-  }
-  
-  .Content-topic {
-    width: 100%;
-    height: 200px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-    background-color: #1a1a1b;
-    color: white;
-    resize: none; /* Evita cambiar el tamaño manualmente */
-    overflow: auto; /* Permite que el área crezca automáticamente */
-    white-space: pre-wrap; /* Hace que los saltos de línea se respeten automáticamente */
-    line-height: 1.5; /* Mejora el espaciado entre líneas */
-    overflow-wrap: break-word; /* Evita que las palabras largas desborden */
+.container-post:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
 
+/* Estilos para títulos */
+h1, h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
 
-    
-  }
-  
-  .post-button {
-    align-self: flex-end;
-    padding: 10px 20px;
-    border: none;
-    background-color: #0079d3;
-    color: white;
-    font-weight: bold;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-  
-  .post-button:hover {
-    background-color: #005999;
-  }
-  
-  
+/* Estilos para inputs y textareas */
+.Title-topic, .Content-topic, .modal-content input, .modal-content textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: var(--background-dark);
+  color: var(--text-color);
+  transition: border-color 0.3s ease;
+}
+
+.Title-topic:focus, .Content-topic:focus, 
+.modal-content input:focus, .modal-content textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+.Content-topic, .modal-content textarea {
+  min-height: 200px;
+  resize: vertical;
+}
+
+/* Estilos para botones */
+.post-button, .modal-content button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+.post-button:hover, .modal-content button:hover {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+/* Estilos para mensajes de error y éxito */
+.error-message, .success-message {
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.error-message {
+  background-color: rgba(255, 68, 68, 0.1);
+  color: var(--error-color);
+}
+
+.success-message {
+  background-color: rgba(0, 200, 83, 0.1);
+  color: var(--success-color);
+}
+
+/* Estilos para el modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Estilos específicos para el EditModal */
+.modal-content button:first-of-type {
+  margin-right: 10px;
+}
+
+.modal-content button:last-of-type {
+  background-color: var(--background-light);
+  color: var(--text-color);
+}
+
+.modal-content button:last-of-type:hover {
+  background-color: var(--border-color);
+}

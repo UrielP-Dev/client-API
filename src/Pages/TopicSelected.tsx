@@ -24,19 +24,20 @@ function TopicSelected() {
   const { id: topicId } = useParams<{ id: string }>();
   const [ideas, setIdeas] = useState<Idea[]>([]);
   const [topic, setTopic] = useState<Topic | null>(null);
+  const [newIdeaContent, setNewIdeaContent] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isExpanded, setIsExpanded] = useState(false); // Estado para manejar la expansión del textarea
 
   useEffect(() => {
     const fetchTopicAndIdeas = async () => {
       try {
-        // Get the token from localStorage
         const token = localStorage.getItem("token");
 
-        // Fetch the topic details
         const topicResponse = await fetch(
           `http://localhost:5185/api/v1/topics/${topicId}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -49,12 +50,11 @@ function TopicSelected() {
           console.error("Unexpected topic response structure:", topicResult);
         }
 
-        // Fetch the ideas for the topic
         const ideasResponse = await fetch(
           `http://localhost:5185/api/v1/ideas/?TopicId=${topicId}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`, // Include the token in the headers
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -75,6 +75,65 @@ function TopicSelected() {
     fetchTopicAndIdeas();
   }, [topicId]);
 
+  const handlePostIdea = async () => {
+    setErrorMessage("");
+
+    if (!newIdeaContent) {
+      setErrorMessage("Idea content cannot be empty.");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5185/api/v1/ideas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          topicId: topicId,
+          content: newIdeaContent,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to post the idea");
+      }
+
+      setNewIdeaContent("");
+
+      const updatedIdeasResponse = await fetch(
+        `http://localhost:5185/api/v1/ideas/?TopicId=${topicId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const updatedIdeasResult = await updatedIdeasResponse.json();
+
+      if (Array.isArray(updatedIdeasResult)) {
+        setIdeas(updatedIdeasResult);
+      } else if (updatedIdeasResult && Array.isArray(updatedIdeasResult.data)) {
+        setIdeas(updatedIdeasResult.data);
+      }
+    } catch (error) {
+      console.error("Error posting idea:", error);
+      setErrorMessage("Failed to post the idea.");
+    }
+  };
+
+  const handleFocus = () => {
+    setIsExpanded(true);
+  };
+
+  const handleCancel = () => {
+    setIsExpanded(false);
+    setNewIdeaContent("");
+    setErrorMessage("");
+  };
+
   return (
     <div className="topic-selected-container">
       {topic ? (
@@ -89,6 +148,29 @@ function TopicSelected() {
       ) : (
         <p>Loading topic...</p>
       )}
+      <div className="post-idea-container">
+        <h3>What are your thoughts?</h3>
+        <div className={`idea-input-wrapper ${isExpanded ? "expanded" : ""}`}>
+          <textarea
+            className="new-idea-input"
+            value={newIdeaContent}
+            onChange={(e) => setNewIdeaContent(e.target.value)}
+            placeholder="Share your idea..."
+            onFocus={handleFocus}
+          />
+          {isExpanded && (
+            <div className="idea-actions">
+              <button className="cancel-button" onClick={handleCancel}>
+                Cancel
+              </button>
+              <button className="post-button" onClick={handlePostIdea}>
+                Post
+              </button>
+            </div>
+          )}
+        </div>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
       <div className="ideas-container">
         <h3>Ideas</h3>
         {ideas.length > 0 ? (
@@ -97,6 +179,8 @@ function TopicSelected() {
           <p>No ideas available for this topic.</p>
         )}
       </div>
+
+      
     </div>
   );
 }
