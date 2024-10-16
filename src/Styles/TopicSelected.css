@@ -1,5 +1,5 @@
 .topic-selected-container {
-  max-width: 800px;
+  width: 800px;
   margin: 0 auto;
   padding: 20px;
   background-color: #1a1a1b;
@@ -39,15 +39,21 @@
 .ideas-container h3 {
   font-size: 16px;
   margin-bottom: 12px;
+  color: #d7dadc;
 }
 
-/* Styles for the Idea component */
+/* Updated Styles for the Idea component */
 .idea-card {
   background-color: #1a1a1b;
   border: 1px solid #343536;
   border-radius: 4px;
   margin-bottom: 12px;
   display: flex;
+  transition: border-color 0.3s ease;
+}
+
+.idea-card:hover {
+  border-color: #818384;
 }
 
 .vote-section {
@@ -55,8 +61,9 @@
   flex-direction: column;
   align-items: center;
   padding: 8px;
-  background-color: #323b5b;
+  background-color: #1a1a1b;
   min-width: 40px;
+  border-right: 1px solid #343536;
 }
 
 .vote-button {
@@ -65,10 +72,11 @@
   color: #818384;
   font-size: 20px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .vote-button:hover {
+  color: #d7dadc;
   transform: scale(1.1);
 }
 
@@ -76,6 +84,7 @@
   font-size: 12px;
   font-weight: bold;
   color: #d7dadc;
+  margin: 4px 0;
 }
 
 .idea-content {
@@ -93,6 +102,7 @@
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 8px;
+  color: #d7dadc;
 }
 
 .idea-actions {
@@ -108,6 +118,7 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: color 0.2s ease;
 }
 
 .action-button:hover {
@@ -161,20 +172,320 @@
   background-color: #272729;
 }
 
-.idea-actions button:first-child {
+.cancel-button,
+.post-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.cancel-button {
   background-color: transparent;
   color: #818384;
   border: 1px solid #343536;
 }
 
-.idea-actions button:first-child:hover {
+.cancel-button:hover {
   background-color: #272729;
   color: #d7dadc;
   border-color: #d7dadc;
 }
 
+.post-button {
+  background-color: #323b5b;
+  color: #ffffff;
+  border: none;
+}
+
+.post-button:hover {
+  background-color: #4a5d8f;
+}
+
 .error-message {
   color: #ff4500;
   margin-top: 8px;
+  font-size: 14px;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #1a1a1b;
+  border: 1px solid #343536;
+  border-radius: 4px;
+}
+
+.pagination-controls button {
+  background-color: #323b5b;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #4a5d8f;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  color: #d7dadc;
+  font-size: 14px;
+}.topic-selected-container {
+  width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #1a1a1b;
+  color: #d7dadc;
+  margin-top: 140px;
+}
+
+.topic-card {
+  background-color: #1a1a1b;
+  border: 1px solid #343536;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.topic-card h2 {
+  margin: 0 0 8px 0;
+  font-size: 20px;
+  color: #d7dadc;
+}
+
+.topic-metadata {
+  font-size: 12px;
+  color: #818384;
+  margin-bottom: 8px;
+}
+
+.topic-description {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ideas-container {
+  margin-top: 20px;
+}
+
+.ideas-container h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #d7dadc;
+}
+
+/* Updated Styles for the Idea component */
+.idea-card {
+  background-color: #1a1a1b;
+  border: 1px solid #343536;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  display: flex;
+  transition: border-color 0.3s ease;
+}
+
+.idea-card:hover {
+  border-color: #818384;
+}
+
+.vote-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px;
+  background-color: #1a1a1b;
+  min-width: 40px;
+  border-right: 1px solid #343536;
+}
+
+.vote-button {
+  background: none;
+  border: none;
+  color: #818384;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.vote-button:hover {
+  color: #d7dadc;
+  transform: scale(1.1);
+}
+
+.vote-count {
+  font-size: 12px;
+  font-weight: bold;
+  color: #d7dadc;
+  margin: 4px 0;
+}
+
+.idea-content {
+  flex-grow: 1;
+  padding: 12px;
+}
+
+.idea-metadata {
+  font-size: 12px;
+  color: #818384;
+  margin-bottom: 8px;
+}
+
+.idea-text {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 8px;
+  color: #d7dadc;
+}
+
+.idea-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: #818384;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.action-button:hover {
+  color: #d7dadc;
+}
+
+.vote-icon {
+  margin-right: 4px;
+}
+
+.post-idea-container {
+  margin-top: 20px;
+  background-color: #1a1a1b;
+  border: 1px solid #343536;
+  border-radius: 4px;
+  padding: 16px;
+}
+
+.post-idea-container h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #818384;
+}
+
+.idea-input-wrapper {
+  border: 1px solid #343536;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.idea-input-wrapper.expanded {
+  border-color: #d7dadc;
+}
+
+.new-idea-input {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  background-color: #1a1a1b;
+  color: #d7dadc;
+  border: none;
+  resize: vertical;
+}
+
+.idea-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px;
+  background-color: #272729;
+}
+
+.cancel-button,
+.post-button {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.cancel-button {
+  background-color: transparent;
+  color: #818384;
+  border: 1px solid #343536;
+}
+
+.cancel-button:hover {
+  background-color: #272729;
+  color: #d7dadc;
+  border-color: #d7dadc;
+}
+
+.post-button {
+  background-color: #323b5b;
+  color: #ffffff;
+  border: none;
+}
+
+.post-button:hover {
+  background-color: #4a5d8f;
+}
+
+.error-message {
+  color: #ff4500;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #1a1a1b;
+  border: 1px solid #343536;
+  border-radius: 4px;
+}
+
+.pagination-controls button {
+  background-color: #323b5b;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #4a5d8f;
+}
+
+.pagination-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-controls span {
+  color: #d7dadc;
   font-size: 14px;
 }

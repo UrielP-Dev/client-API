@@ -23,18 +23,24 @@ const TopicsComponent: React.FC = () => {
   const [editTitle, setEditTitle] = useState<string>("");
   const [editDescription, setEditDescription] = useState<string>("");
 
+  const [currentPage, setCurrentPage] = useState<number>(1); 
+  const [totalPages, setTotalPages] = useState<number>(1); 
+
   useEffect(() => {
-    const fetchTopics = async () => {
+    const fetchTopics = async (page: number) => {
       try {
         const token = localStorage.getItem("token");
 
-        const response = await fetch("http://localhost:5185/api/v1/topics", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await fetch(
+          `http://localhost:5185/api/v1/topics/paginated?pageNumber=${page}&pageSize=15`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error("Failed to fetch topics");
@@ -42,13 +48,14 @@ const TopicsComponent: React.FC = () => {
 
         const result = await response.json();
         setTopics(result.data || []);
+        setTotalPages(Math.ceil(result.totalCount / 15));
       } catch (error) {
         console.error("Error fetching topics:", error);
       }
     };
 
-    fetchTopics();
-  }, []);
+    fetchTopics(currentPage);
+  }, [currentPage]);
 
   const handleDelete = async () => {
     if (!selectedTopicId) return;
@@ -142,6 +149,10 @@ const TopicsComponent: React.FC = () => {
     }
   };
 
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <>
       <div className="container">
@@ -187,6 +198,18 @@ const TopicsComponent: React.FC = () => {
             <div>No topics available</div>
           )}
         </div>
+      </div>
+
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <button
+            key={i + 1}
+            className={`page-button ${currentPage === i + 1 ? "active" : ""}`}
+            onClick={() => handlePageChange(i + 1)}
+          >
+            {i + 1}
+          </button>
+        ))}
       </div>
 
       <Modal
